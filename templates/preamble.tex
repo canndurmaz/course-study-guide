@@ -1,0 +1,79 @@
+% Course Study Guide -- shared preamble (all chapters rely on these macros/environments)
+% Set the course code in main.tex BEFORE \input{preamble}:  \newcommand{\CourseCode}{ME521}
+\providecommand{\CourseCode}{Course}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[a4paper,margin=2.4cm,headheight=14pt]{geometry}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{bm}
+\usepackage{enumitem}
+\usepackage{booktabs,array,multirow}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,calc,decorations.pathreplacing,patterns,positioning}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.17}
+\usepackage[most]{tcolorbox}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage[hidelinks]{hyperref}
+\usepackage[nameinlink,capitalise]{cleveref}
+
+\definecolor{primary}{HTML}{1F4E79}
+\definecolor{defcol}{HTML}{2E75B6}
+\definecolor{thmcol}{HTML}{C55A11}
+\definecolor{excol}{HTML}{548235}
+\definecolor{notecol}{HTML}{7F6000}
+\definecolor{warncol}{HTML}{C00000}
+\definecolor{solcol}{HTML}{5B2C6F}
+
+\titleformat{\chapter}[display]{\normalfont\huge\bfseries\color{primary}}{\chaptertitlename\ \thechapter}{12pt}{\Huge}
+\titleformat{\section}{\normalfont\Large\bfseries\color{primary}}{\thesection}{1em}{}
+\titleformat{\subsection}{\normalfont\large\bfseries\color{primary!85!black}}{\thesubsection}{1em}{}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\nouppercase{\leftmark}}
+\fancyhead[R]{\small \CourseCode{} Study Guide}
+\fancyfoot[C]{\thepage}
+
+\setlist{itemsep=2pt,topsep=4pt}
+\numberwithin{equation}{section}
+
+% ---------- boxed environments ----------
+% Boxed theorems: \begin{definition}{Title}{label} -> \cref{def:label}; keyidea/pitfall/instructor take [optional title] (commas OK)
+\newtcbtheorem[number within=chapter,crefname={Definition}{Definitions},Crefname={Definition}{Definitions}]{definition}{Definition}{enhanced,breakable,colback=defcol!5,colframe=defcol,fonttitle=\bfseries,separator sign={.},description delimiters={(}{)}}{def}
+\newtcbtheorem[use counter from=definition,crefname={Theorem}{Theorems},Crefname={Theorem}{Theorems}]{theorem}{Theorem}{enhanced,breakable,colback=thmcol!5,colframe=thmcol,fonttitle=\bfseries,separator sign={.},description delimiters={(}{)}}{thm}
+\newtcbtheorem[use counter from=definition,crefname={Example}{Examples},Crefname={Example}{Examples}]{example}{Example}{enhanced,breakable,colback=excol!4,colframe=excol,fonttitle=\bfseries,separator sign={.},description delimiters={(}{)}}{ex}
+% NB: tcbtheorems take TWO mandatory args: \begin{theorem}{Title}{label} -- leave either empty: \begin{theorem}{}{}
+
+\newtcolorbox{keyidea}[1][Key idea]{enhanced,breakable,colback=notecol!6,colframe=notecol,fonttitle=\bfseries,title={#1}}
+\newtcolorbox{pitfall}[1][Common pitfall]{enhanced,breakable,colback=warncol!4,colframe=warncol,fonttitle=\bfseries,title={#1}}
+\newtcolorbox{instructor}[1][From the instructor's notes]{enhanced,breakable,colback=white,colframe=primary!60,borderline west={3pt}{0pt}{primary},fonttitle=\bfseries\itshape,coltitle=primary,colbacktitle=primary!8,title={#1}}
+\newtcolorbox{summarybox}[1][Chapter summary]{enhanced,breakable,colback=primary!4,colframe=primary,fonttitle=\bfseries,title={#1}}
+
+% problem / solution for exercise chapters
+\newtcolorbox{problem}[1]{enhanced,breakable,colback=gray!6,colframe=gray!60!black,fonttitle=\bfseries,title=Problem #1}
+\newenvironment{solution}{\par\noindent\textbf{\color{solcol}Solution.}\ }{\hfill$\blacksquare$\par\medskip}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+% ---------- math macros ----------
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\dd}{\,\mathrm{d}}
+\newcommand{\der}[2]{\frac{\mathrm{d}#1}{\mathrm{d}#2}}
+\newcommand{\pder}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\Lap}{\mathcal{L}}          % Laplace transform
+\newcommand{\Op}{\mathscr{L}}           % differential operator
+\newcommand{\ip}[2]{\left\langle #1,\, #2\right\rangle}
+\newcommand{\norm}[1]{\left\lVert #1\right\rVert}
+\newcommand{\abs}[1]{\left\lvert #1\right\rvert}
+\newcommand{\Wr}{W}                     % Wronskian
+\DeclareMathOperator{\sgn}{sgn}
+\usepackage{mathrsfs}
